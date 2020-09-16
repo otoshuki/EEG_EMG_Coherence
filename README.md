@@ -15,9 +15,34 @@ The first step was on understanding the brain and its connection to the muscles.
 
 I worked with a dataset containing 64 channel EEG + 4 channel EMG data over several trials taken from 52 subjects [8]. The dataset had both real movement data and motor imagery data over the complete 68 channels which was pre labelled and cleaned. The EEG data followed international 10-10 system, while the EMG channels were attached to flexor digitorium profundus and extensor digitorium on each arm
 
-Different frequency bands of the EEG data (delta, theta, alpha, beta and gamma) relates to different brain activations corresponding to different activities [9]. Also different regions of the brain are activated during different activities, specifically motor cortex region during movement tasks and motor imagery [10]. This greatly reduces the number of channels highly correlated to motor imagery activations to about 10 EEG channels. Data corresponding to only right hand was considered and hence reduced the number of EMG channels. 
+Different frequency bands of the EEG data (delta, theta, alpha, beta and gamma) relates to different brain activations corresponding to different activities [9]. Also different regions of the brain are activated during different activities, specifically motor cortex region during movement tasks and motor imagery [10]. This greatly reduces the number of channels highly correlated to motor imagery activations to about 10 EEG channels.
 
 [11,12] provided insights into the current feature extraction algorithms used for individual EEG and EMG signals, but most of the work shifted towards coherence estimation based on A. Choudary's works [1,2,3]. Several different attempts on improving the provided systems were tried and tested with different machine learning models and dimensionality reduction methods like PCA and mainly KPLS-mRMR [13] which is a feature selection method based on minimum Redundancy Maximum Relevance selection over Kernel based PLS(partial least squares) coeficients[14].
+
+## Okay, the actual work
+
+1. I finally ended up with 10 EEG channels and 4 EMG channel data from 52 subjects. This included both motor imagery and real movement data. The data was sampled at 512 Hz and each trial ran for about 5s. 
+2. First step was the set up the data as a training set, i.e. with features and labels. Luckily, the data was already sorted into left and right movement/motor imagery cases and all the trials were concatenated. It also had a binary label indicating the onset of each event. During most of my tests I took 2s from the trial as the training sample.
+3. But wait, isn't the entire dataset only positive classes? They are indeed, so the only way I could get negative samples was to sample it out from the trial data. This selection of positive and negative classes differed from algorithm to algorithm. 
+4. In cases when I only wanted to classify the present condition of the subject, I'd sample ~1.5-2s from the initial rest state as negative class and ~1.5-2s after the onset as positive class. In cases when I wanted to check the coherence structure I'd take 1s before the onset and 1s into the event as the positive class while I take 2s after the selection as the negative class.
+5. Also, in my work I tried classifying left and right hand movement intent; in this case the data was easy to collect. 2-3s from right movement as positive and that from left movement as negative.
+6. Honestly a lot of work went into studying and reading about this completely new field I pushed myself into.
+7. Some of the features I used from current literature were - 
+  - Correlation between band-limited power time-courses(CBPT) [3]
+  - Corticomuscular-Coherence(CMC) [1]
+  - Task-related EEG power increase(TRPI) [6]
+  - Spectral power correlation(SPC) [2]
+  - Discrete fourier transform(FT) coefficients
+  - Short time fourier transform(STFT) coefficients [11]
+  - Discrete wavelet transform(DWT) coefficients [11]
+  - Power spectral density(PSD) [12]
+  - Spectral magnitude averages [12]
+  - The last one I tried was called S-transform (not the same as Laplace transform), which ended up not working at all.
+10. Also, as [9] shows, different frequency bands were analyzed for different coherence structures. Discrete time band pass filters did the job anyway.
+9. Used KPLS-mRMR from [13] to perform feature selection, which essentially performs Kernel based Partial Least Squares Regression and uses these coefficients to calculate a relevance score between two features. This is then used to select the best features as given in the paper. Part of this was also implemented in the process while the code for KPLS regression can be found online. 
+10. After a lot of feature extraction-selection, Statistics and ML toolbox comes to the rescue enabling training of several different algorithms using the training set including k-fold cross validation. Data visualization lost hope since a lot of the features didn't show visible patterns anyway.
+11. PCA was also used on the data before feeding into the algorithms. The performances were recorded and for the ones that showed hope, I performed it again separately while tuning the parameters to get err... better performance.
+12. Some of the features-model pairs showed high classification accuracies and were recorded.
 
 ## References - 
 
