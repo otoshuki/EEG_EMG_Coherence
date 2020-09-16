@@ -43,6 +43,8 @@ Different frequency bands of the EEG data (delta, theta, alpha, beta and gamma) 
 10. After a lot of feature extraction-selection, Statistics and ML toolbox comes to the rescue enabling training of several different algorithms using the training set including k-fold cross validation. Data visualization lost hope since a lot of the features didn't show visible patterns anyway.
 11. PCA was also used on the data before feeding into the algorithms. The performances were recorded and for the ones that showed hope, I performed it again separately while tuning the parameters to get err... better performance.
 12. Some of the features-model pairs showed high classification accuracies and were recorded.
+13. My work went into analyzing these different features and algorithms and an attempt to improve it further. Eg - It has been found that EMG data is often closely related to changes rather than the state, so using differentiated EMG data made more sense to be compared to coherence structures. Such works were performed on a daily basis which I forgot to record often and can be found in the set of different algorithms I tested. 
+14. This was my first hands-on experience with research and although I learned a lot, lot of stuff, it didn't end well since I couldn't really get something out worth publishing(and such stuff). Around November 2019, with Endsems around the corner and me getting ready for Inter IIT Tech Meet, I decided to stop the work.
 
 ## References - 
 
