@@ -1,5 +1,5 @@
 # Hybrid BCI System
-## This project was done as my 2nd year summer research intern
+<!--## This project was done as my 2nd year summer research intern-->
 ### Only the programs I worked on has been added here.
 ### The work on KPLS and KPLS-mRMR hasn't been added since I didn't create it or hold the rights.
 
