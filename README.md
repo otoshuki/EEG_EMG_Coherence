@@ -3,7 +3,7 @@
 ### Only the programs I worked on has been added here.
 ### The work on KPLS and KPLS-mRMR hasn't been added since I didn't create it or hold the rights.
 
-The project was on developing a hybrid BCI system that uses both EEG and EMG signals for classifying forearm state(open or closed). This information would've been used as a control signal for a bionic arm.
+The project was to develop a hybrid BCI system that uses both EEG and EMG signals for classifying forearm state(open or closed). This information would've been used as a control signal for a bionic arm.
 
 Motor imagery can be defined as the act/state of mentally simulating a physical action. In the case of stroke patients or the ones with forelimbs loss this is often the best "heuristic" for identifying forelimbs movement intent. But EEG signal based classification are often inaccurate, due to the highly complex nature of the brain wrt the very low dimensions of data we can use and also due to the noise from motion, hair and other body parts.
 
@@ -44,7 +44,7 @@ Different frequency bands of the EEG data (delta, theta, alpha, beta and gamma) 
 11. PCA was also used on the data before feeding into the algorithms. The performances were recorded and for the ones that showed hope, I performed it again separately while tuning the parameters to get err... better performance.
 12. Some of the features-model pairs showed high classification accuracies and were recorded.
 13. My work went into analyzing these different features and algorithms and an attempt to improve it further. Eg - It has been found that EMG data is often closely related to changes rather than the state, so using differentiated EMG data made more sense to be compared to coherence structures. Such works were performed on a daily basis which I forgot to record often and can be found in the set of different algorithms I tested. 
-14. This was my first hands-on experience with research and although I learned a lot, lot of stuff, it didn't end well since I couldn't really get something out worth publishing(and such stuff). Around November 2019, with Endsems around the corner and me getting ready for Inter IIT Tech Meet, I decided to stop the work.
+14. This was my first hands-on experience with a kind of research project and although I learned a lot, lot of stuff, it didn't end well since I couldn't really get something out worth publishing(and such stuff). Around November 2019, with Endsems around the corner and me getting ready for Inter IIT Tech Meet, I decided to stop the work.
 
 ## References - 
 
